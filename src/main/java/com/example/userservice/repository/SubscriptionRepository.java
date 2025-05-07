@@ -12,7 +12,7 @@ import java.util.List;
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
 
     @Query("""
-        SELECT new com.example.userservice.dto.TopSubscriptionDto(
+        SELECT new com.example.userservice.dto.response.TopSubscriptionDto(
            s.serviceName,
            COUNT(s)
         )
