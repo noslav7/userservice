@@ -12,14 +12,11 @@ import java.util.List;
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
 
     @Query("""
-        SELECT new com.example.userservice.dto.response.TopSubscriptionDto(
-           s.serviceName,
-           COUNT(s)
-        )
-        FROM Subscription s
-        GROUP BY s.serviceName
-        ORDER BY COUNT(s) DESC
-    """)
+  SELECT s.serviceName AS name, COUNT(s) AS count
+  FROM Subscription s
+  GROUP BY s.serviceName
+  ORDER BY COUNT(s) DESC
+""")
     List<TopSubscription> findTopSubscriptions(Pageable pageable);
 
 }
